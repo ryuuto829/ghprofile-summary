@@ -1,0 +1,61 @@
+@import 'mixins';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+::selection {
+  background: var(--colorSelection);
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  color: var(--colorWhite);
+  background-color: var(--colorDarkBlack);
+  font-family: var(--fontMain);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 300;
+}
+
+main {
+  @include flexCenter();
+  flex-direction: column;
+}
+
+input {
+  display: block;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: var(--colorGrey);
+
+  &:focus {
+    outline: 0;
+  }
+
+  &::placeholder {
+    color: inherit;
+  }
+}
+
+section {
+  width: 100%;
+  max-width: 1200px;
+  padding: 1rem;
+}

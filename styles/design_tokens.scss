@@ -1,0 +1,20 @@
+/*
+  Globally shared variables
+*/
+:root {
+  /* Colors */
+  --colorDarkBlack: #031218;
+  --colorBlack: #1d2a37;
+  --colorLightBlack: #1a2734;
+  --colorAccentGreen: #5cdb95;
+  --colorDarkBlue: #2e3d4d;
+  --colorWhite: rgba(255, 255, 255, 0.87);
+  --colorGrey: #9f9f9f;
+  --colorSelection: #345171;
+
+  /* Fonts */
+  --fontMain: 'Roboto', system, -apple-system, Segoe UI, Arial, sans-serif;
+
+  /* Border */
+  --borderRadius: 6px;
+}
