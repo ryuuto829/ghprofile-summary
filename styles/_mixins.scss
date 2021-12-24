@@ -1,5 +1,30 @@
-@mixin flexCenter() {
+@mixin flexCenter {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin outline {
+  outline: 1px solid red;
+}
+
+@mixin button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  background-color: var(--colorAccentGreen);
+  border: none;
+  border-radius: var(--borderRadius);
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-size: inherit;
+  color: var(--colorBlack);
+  font-family: inherit;
+  font-weight: 500;
 }

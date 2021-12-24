@@ -33,8 +33,14 @@ h6 {
   font-weight: 300;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 main {
-  @include flexCenter();
+  @include flexCenter;
   flex-direction: column;
 }
 
@@ -57,5 +63,8 @@ input {
 section {
   width: 100%;
   max-width: 1200px;
-  padding: 1rem;
+
+  &:first-of-type {
+    padding: 2rem 1rem;
+  }
 }
