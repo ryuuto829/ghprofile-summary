@@ -26,11 +26,11 @@ export default function UserData() {
               <span>Ukraine</span>
             </li>
           </ul>
-          <button className={styles['btn-follow']}>
-            <MarkGithubIcon size='24' />
-            <span>Follow</span>
-          </button>
         </div>
+        <button className={styles['btn-follow']}>
+          <MarkGithubIcon size='24' />
+          <span>Follow</span>
+        </button>
       </div>
     </section>
   )

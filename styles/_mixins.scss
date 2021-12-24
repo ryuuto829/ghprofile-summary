@@ -9,8 +9,8 @@
   flex-direction: column;
 }
 
-@mixin outline {
-  outline: 1px solid red;
+@mixin transition {
+  transition: all 0.2s cubic-bezier(0.15, 0.96, 0.26, 1.05) 0s;
 }
 
 @mixin button {
@@ -18,13 +18,24 @@
   align-items: center;
   justify-content: space-between;
   height: 36px;
-  background-color: var(--colorAccentGreen);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
   border: none;
   border-radius: var(--borderRadius);
-  padding: 0.5rem 1rem;
+  background-color: var(--colorAccentGreen);
   text-transform: uppercase;
   font-size: inherit;
   color: var(--colorBlack);
   font-family: inherit;
   font-weight: 500;
+  @include transition;
+
+  &:hover,
+  &:focus {
+    background-color: var(--colorAccentLightGreen);
+  }
+}
+
+@mixin outline {
+  outline: 1px solid red;
 }
