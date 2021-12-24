@@ -1,0 +1,45 @@
+.header {
+  margin-bottom: 2rem;
+
+  &__icon {
+    color: var(--colorAccentGreen);
+  }
+
+  h2 {
+    display: inline;
+    font-size: 24px;
+    padding-left: 1rem;
+  }
+}
+
+.user-form {
+  label {
+    color: var(--colorGrey);
+  }
+
+  &__input-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    color: var(--colorGrey);
+    margin-top: 1rem;
+
+    input {
+      height: 48px;
+      width: 100%;
+      max-width: 500px;
+      padding: 15px;
+      padding-left: calc(15px + 24px + 15px); /* icon size + 2 paddings */
+      background-color: var(--colorDarkBlue);
+      border-radius: var(--borderRadius);
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS41IDdhNC40OTkgNC40OTkgMCAxMS04Ljk5OCAwQTQuNDk5IDQuNDk5IDAgMDExMS41IDd6bS0uODIgNC43NGE2IDYgMCAxMTEuMDYtMS4wNmwzLjA0IDMuMDRhLjc1Ljc1IDAgMTEtMS4wNiAxLjA2bC0zLjA0LTMuMDR6Ij48L3BhdGg+PC9zdmc+');
+      background-repeat: no-repeat;
+      background-size: 24px auto;
+      background-position: 15px 45%;
+    }
+
+    span {
+      padding-top: 1rem;
+    }
+  }
+}
