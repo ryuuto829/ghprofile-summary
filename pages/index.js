@@ -1,10 +1,11 @@
-import { UserData, Search } from '../components'
+import { UserData, Search, Repos } from '../components'
 
 export default function Home() {
   return (
     <main>
       <Search />
       <UserData />
+      <Repos />
     </main>
   )
 }
