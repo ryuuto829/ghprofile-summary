@@ -1,4 +1,4 @@
-import { UserData, Search, Repos } from '../components'
+import { UserData, Search, Repos, Footer } from '../components'
 
 export default function Home() {
   return (
@@ -6,6 +6,7 @@ export default function Home() {
       <Search />
       <UserData />
       <Repos />
+      <Footer />
     </main>
   )
 }

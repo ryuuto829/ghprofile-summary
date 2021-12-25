@@ -1,0 +1,25 @@
+@import '../../styles/mixins';
+
+.footer {
+  padding: 1rem;
+  text-align: center;
+  color: var(--colorGrey);
+  font-size: 14px;
+
+  & a {
+    color: var(--colorAccentGreen);
+
+    &:hover {
+      color: var(--colorAccentLightGreen);
+    }
+
+    & svg {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__repo-source {
+    @include flexCenter;
+    margin-top: 0.5rem;
+  }
+}
