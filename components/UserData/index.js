@@ -1,10 +1,11 @@
 import { MarkGithubIcon } from '@primer/octicons-react'
+import sharedStyles  from '../../styles/Section.module.scss'
 import styles from './UserData.module.scss'
 
 export default function UserData() {
   return (
     <section>
-      <div className={styles['user-profile']}>
+      <div className={sharedStyles.section}>
         {/* TODO: Fetch an image from the API */}
         <div className={styles.avatar}>
           <img src="https://via.placeholder.com/150" alt='User avatar' />

@@ -1,0 +1,14 @@
+@import 'mixins';
+
+.section {
+  @include flexColumn;
+  align-items: center;
+  background-color: var(--colorBlack);
+  padding: 2rem 1rem;
+  border-radius: var(--borderRadius);
+
+  & h2 {
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+}

@@ -1,17 +1,5 @@
 @import '../../styles/mixins';
 
-.repo-section {
-  @include flexColumn;
-  align-items: center;
-  background-color: var(--colorBlack);
-  padding: 2rem 1rem;
-
-  & h2 {
-    font-weight: 500;
-    margin-bottom: 2rem;
-  }
-}
-
 .repo-list {
   width: 100%;
 

@@ -1,12 +1,5 @@
 @import '../../styles/mixins';
 
-.user-profile {
-  @include flexColumn;
-  align-items: center;
-  background-color: var(--colorBlack);
-  padding: 2rem 1rem;
-}
-
 .avatar {
   @include flexCenter;
   width: 150px;

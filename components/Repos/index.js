@@ -1,10 +1,11 @@
 import { RepoIcon, StarFillIcon, RepoForkedIcon } from '@primer/octicons-react'
+import sharedStyles  from '../../styles/Section.module.scss'
 import styles from './Repos.module.scss'
 
 export default function Repos() {
   return (
     <section>
-      <div className={styles['repo-section']}>
+      <div className={sharedStyles.section}>
         <h2>Top Repos</h2>
         <ul className={styles['repo-list']}>
           {[...Array(10).keys()].map(i => (
