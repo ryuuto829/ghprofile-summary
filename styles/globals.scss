@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'media';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 html {
@@ -69,6 +70,16 @@ input {
 
 section {
   width: 100%;
-  max-width: 1200px;
-  padding: 1rem;
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+
+  @include media-for('tablet-portrait-up') {
+    padding: 0 2rem;
+    padding-bottom: 2rem;
+  }
+
+  @include media-for('tablet-landscape-up') {
+    padding: 0 3rem;
+    padding-bottom: 3rem;
+  }
 }

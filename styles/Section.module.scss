@@ -1,10 +1,18 @@
 @import 'mixins';
+@import 'media';
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 .section {
   @include flexColumn;
   align-items: center;
-  background-color: var(--colorBlack);
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 2rem 1rem;
+  background-color: var(--colorBlack);
   border-radius: var(--borderRadius);
 
   & h2 {

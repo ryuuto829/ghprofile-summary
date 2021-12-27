@@ -1,0 +1,33 @@
+// Mixin to manage responsive breakpoints
+// See: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/
+// and https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
+
+$breakpoints: (
+  'phone-only': (
+    max-width: 599px,
+  ),
+  'tablet-portrait-up': (
+    min-width: 600px,
+  ),
+  'tablet-landscape-up': (
+    min-width: 900px,
+  ),
+  'desktop-up': (
+    min-width: 1200px,
+  ),
+) !default;
+
+@mixin media-for($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Value is not defined.";
+  }
+}
