@@ -1,17 +1,50 @@
 @import '../../styles/mixins';
+@import '../../styles/media';
+
+.container {
+  @include flexColumn;
+  align-items: center;
+  width: 100%;
+
+  @include media-for('tablet-portrait-up') {
+    flex-direction: row;
+  }
+}
 
 .avatar {
   @include flexCenter;
   width: 150px;
   height: 150px;
-  border-radius: var(--borderRadiusBig);
-  overflow: hidden;
   margin-bottom: 2rem;
+
+  & img {
+    display: block;
+  }
+
+  & div {
+    border-radius: var(--borderRadiusBig);
+    overflow: hidden;
+  }
+
+  @include media-for('tablet-portrait-up') {
+    margin-bottom: 0;
+    margin-right: 2rem;
+  }
 }
 
 .user-info {
   width: 100%;
   text-align: center;
+
+  &__header {
+    @include flexColumn;
+
+    @include media-for('tablet-portrait-up') {
+      text-align: left;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 
   & h1 {
     font-size: 24px;
@@ -28,13 +61,13 @@
 }
 
 .stats {
-  display: flex;
-  flex-direction: column;
+  @include flexColumn;
   text-align: initial;
   margin-bottom: 2rem;
 
   & li {
     @include flexColumn;
+    width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
     background-color: var(--colorLightBlack);
@@ -45,6 +78,15 @@
     &:last-of-type {
       margin-bottom: 0;
     }
+
+    @include media-for('tablet-portrait-up') {
+      margin-bottom: 0;
+      margin-right: 1rem;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
   }
 
   & span:first-of-type {
@@ -52,6 +94,12 @@
     margin-bottom: 0.5rem;
     font-size: 16px;
     font-weight: 400;
+  }
+
+  @include media-for('tablet-portrait-up') {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0;
   }
 }
 

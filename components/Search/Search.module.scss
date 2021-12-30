@@ -1,5 +1,7 @@
+@import '../../styles/media';
+
 .header {
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 
   &__icon {
     color: var(--colorAccentGreen);
@@ -40,6 +42,16 @@
 
     span {
       padding-top: 1rem;
+
+      @include media-for('tablet-portrait-up') {
+        padding-top: 0;
+        padding-left: 1rem;
+      }
+    }
+
+    @include media-for('tablet-portrait-up') {
+      flex-direction: row;
+      align-items: center;
     }
   }
 }

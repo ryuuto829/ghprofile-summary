@@ -1,6 +1,8 @@
 @import '../../styles/mixins';
 
 .footer {
+  @include flexCenter;
+  width: 100%;
   padding: 1rem;
   text-align: center;
   color: var(--colorGrey);
