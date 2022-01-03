@@ -6,7 +6,7 @@ export default function Repos() {
   return (
     <section>
       <div className={sharedStyles.section}>
-        <h2>Top Repos</h2>
+        <h2 className={sharedStyles.section__header}>Top Repos</h2>
         <ul className={styles['repo-list']}>
           {[...Array(10).keys()].map(i => (
             <li key={i}>

@@ -13,19 +13,20 @@ export default function Search() {
           <span className={styles.header__icon}>
             <MarkGithubIcon size="32"  />
           </span>
-          <h2>GHProfile Summary</h2>
+          <h2 className={styles.header__title}>GHProfile Summary</h2>
         </header>
-        <form className={styles['user-form']}>
-          <label htmlFor="userURL">
-        Search your GitHub username
+        <form>
+          <label htmlFor="userURL" className={styles.label}>
+            Search your GitHub username
           </label>
-          <div className={styles['user-form__input-container']}>
+          <div className={styles.control}>
             <input
+              className={styles.control__input}
               name="userURL"
               type="text"
               placeholder={`ex. 'ryuuto829'`}
             />
-            <span>
+            <span className={styles.control__limit}>
               {`${requestLeft} / ${requestLimit} REQUESTS LEFT`}
             </span>
           </div>

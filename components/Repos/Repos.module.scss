@@ -1,4 +1,5 @@
 @import '../../styles/mixins';
+@import '../../styles/media';
 
 .repo-list {
   width: 100%;
@@ -21,6 +22,10 @@
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+
+    @include media-for('tablet-portrait-up') {
+      margin-bottom: 0;
+    }
 
     & h3 {
       display: -webkit-box;
@@ -53,5 +58,18 @@
         margin-right: 0.25rem;
       }
     }
+
+    @include media-for('tablet-portrait-up') {
+      margin-right: 2rem;
+    }
+
+    @include media-for('tablet-landscape-up') {
+      margin-right: 4rem;
+    }
+  }
+
+  @include media-for('tablet-portrait-up') {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

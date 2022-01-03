@@ -1,57 +1,60 @@
 @import '../../styles/media';
 
 .header {
-  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0 2rem;
 
   &__icon {
     color: var(--colorAccentGreen);
   }
 
-  h2 {
-    display: inline;
+  &__title {
     font-size: 24px;
     padding-left: 1rem;
   }
+
+  @include media-for('tablet-portrait-up') {
+    padding: 2rem 0;
+  }
 }
 
-.user-form {
-  label {
-    color: var(--colorGrey);
+.label {
+  color: var(--colorGrey);
+}
+
+.control {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  color: var(--colorGrey);
+  margin-top: 1rem;
+
+  &__input {
+    height: 48px;
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    padding-left: calc(15px + 24px + 15px); /* icon size + 2 paddings */
+    background-color: var(--colorDarkBlue);
+    border-radius: var(--borderRadius);
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjOWY5ZjlmIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC41MyAxNS41OWE4LjI1IDguMjUgMCAxMTEuMDYtMS4wNmw1LjY5IDUuNjlhLjc1Ljc1IDAgMTEtMS4wNiAxLjA2bC01LjY5LTUuNjl6TTIuNSA5LjI1YTYuNzUgNi43NSAwIDExMTEuNzQgNC41NDcuNzQ2Ljc0NiAwIDAwLS40NDMuNDQyQTYuNzUgNi43NSAwIDAxMi41IDkuMjV6Ii8+PC9zdmc+Cg==');
+    background-repeat: no-repeat;
+    background-size: 24px auto;
+    background-position: 15px 45%;
   }
 
-  &__input-container {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    color: var(--colorGrey);
-    margin-top: 1rem;
-
-    input {
-      height: 48px;
-      width: 100%;
-      max-width: 500px;
-      padding: 15px;
-      padding-left: calc(15px + 24px + 15px); /* icon size + 2 paddings */
-      background-color: var(--colorDarkBlue);
-      border-radius: var(--borderRadius);
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjOWY5ZjlmIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC41MyAxNS41OWE4LjI1IDguMjUgMCAxMTEuMDYtMS4wNmw1LjY5IDUuNjlhLjc1Ljc1IDAgMTEtMS4wNiAxLjA2bC01LjY5LTUuNjl6TTIuNSA5LjI1YTYuNzUgNi43NSAwIDExMTEuNzQgNC41NDcuNzQ2Ljc0NiAwIDAwLS40NDMuNDQyQTYuNzUgNi43NSAwIDAxMi41IDkuMjV6Ii8+PC9zdmc+Cg==');
-      background-repeat: no-repeat;
-      background-size: 24px auto;
-      background-position: 15px 45%;
-    }
-
-    span {
-      padding-top: 1rem;
-
-      @include media-for('tablet-portrait-up') {
-        padding-top: 0;
-        padding-left: 1rem;
-      }
-    }
+  &__limit {
+    padding-top: 1rem;
 
     @include media-for('tablet-portrait-up') {
-      flex-direction: row;
-      align-items: center;
+      padding-top: 0;
+      padding-left: 1rem;
     }
+  }
+
+  @include media-for('tablet-portrait-up') {
+    flex-direction: row;
+    align-items: center;
   }
 }
