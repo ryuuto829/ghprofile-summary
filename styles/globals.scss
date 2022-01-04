@@ -24,6 +24,27 @@ body {
   font-family: var(--fontMain);
 }
 
+main {
+  @include flexCenter;
+  flex-direction: column;
+}
+
+section {
+  width: 100%;
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+
+  @include media-for('tablet-portrait-up') {
+    padding: 0 2rem;
+    padding-bottom: 2rem;
+  }
+
+  @include media-for('tablet-landscape-up') {
+    padding: 0 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -47,9 +68,10 @@ a {
   @include transition;
 }
 
-main {
-  @include flexCenter;
-  flex-direction: column;
+img {
+  width: 100%;
+  max-width: 100%;
+  vertical-align: middle;
 }
 
 input {
@@ -65,21 +87,5 @@ input {
 
   &::placeholder {
     color: inherit;
-  }
-}
-
-section {
-  width: 100%;
-  padding: 0 1rem;
-  padding-bottom: 1rem;
-
-  @include media-for('tablet-portrait-up') {
-    padding: 0 2rem;
-    padding-bottom: 2rem;
-  }
-
-  @include media-for('tablet-landscape-up') {
-    padding: 0 3rem;
-    padding-bottom: 3rem;
   }
 }

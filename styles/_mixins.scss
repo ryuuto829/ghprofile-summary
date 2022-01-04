@@ -36,6 +36,13 @@
   }
 }
 
+@mixin link-hover {
+  &:hover,
+  &:focus {
+    color: var(--colorAccentLightGreen);
+  }
+}
+
 @mixin outline {
   outline: 1px solid red;
 }
