@@ -4,59 +4,78 @@
 .container {
   @include flexColumn;
   align-items: center;
-  width: 100%;
 
-  @include media-for('tablet-portrait-up') {
+  @include media-for('tablet-landscape-up') {
     flex-direction: row;
+    align-items: stretch;
   }
 }
 
 .avatar {
   @include flexCenter;
+  flex-shrink: 0;
   width: 150px;
   height: 150px;
+  overflow: hidden;
   margin-bottom: 2rem;
+  border-radius: var(--borderRadiusBig);
 
-  & img {
-    display: block;
-  }
-
-  & div {
-    border-radius: var(--borderRadiusBig);
-    overflow: hidden;
-  }
-
-  @include media-for('tablet-portrait-up') {
+  @include media-for('tablet-landscape-up') {
     margin-bottom: 0;
     margin-right: 2rem;
   }
 }
 
-.user-info {
+.details {
+  @include flexColumn;
+  justify-content: space-between;
   width: 100%;
   text-align: center;
 
   &__header {
     @include flexColumn;
 
-    @include media-for('tablet-portrait-up') {
+    @include media-for('tablet-landscape-up') {
       text-align: left;
       flex-direction: row;
       justify-content: space-between;
     }
   }
+}
 
-  & h1 {
+.profile {
+  margin-bottom: 1rem;
+
+  &__fullname {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 10px;
   }
 
-  & h2 {
+  &__nickname {
     font-size: 18px;
     font-weight: 400;
     color: var(--colorGrey);
-    margin-bottom: 2rem;
+  }
+
+  @include media-for('tablet-landscape-up') {
+    margin-bottom: 0;
+  }
+}
+
+.follow {
+  margin-bottom: 2rem;
+
+  &__btn {
+    @include button;
+
+    & span {
+      margin-left: 0.5rem;
+    }
+  }
+
+  @include media-for('tablet-landscape-up') {
+    margin-bottom: 0;
   }
 }
 
@@ -67,12 +86,12 @@
   & li {
     @include flexColumn;
     width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
     background-color: var(--colorLightBlack);
     border-radius: var(--borderRadius);
     font-size: 18px;
     font-weight: 100;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
 
     &:last-of-type {
       margin-bottom: 0;
@@ -88,7 +107,7 @@
     }
   }
 
-  & span:first-of-type {
+  &__label {
     color: var(--colorGrey);
     margin-bottom: 0.5rem;
     font-size: 16px;
@@ -98,19 +117,6 @@
   @include media-for('tablet-portrait-up') {
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 0;
-  }
-}
-
-.btn-follow {
-  @include button;
-  margin-bottom: 2rem;
-
-  & span {
-    margin-left: 0.5rem;
-  }
-
-  @include media-for('tablet-portrait-up') {
     margin-bottom: 0;
   }
 }

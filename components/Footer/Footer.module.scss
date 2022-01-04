@@ -8,20 +8,20 @@
   color: var(--colorGrey);
   font-size: 14px;
 
-  & a {
-    color: var(--colorAccentGreen);
-
-    &:hover {
-      color: var(--colorAccentLightGreen);
-    }
-
-    & svg {
-      margin-right: 0.5rem;
-    }
+  &__tools {
+    margin-bottom: 0.5rem;
   }
 
   &__repo-source {
     @include flexCenter;
-    margin-top: 0.5rem;
+  }
+
+  & a {
+    color: var(--colorAccentGreen);
+    @include link-hover;
+
+    & svg {
+      margin-right: 0.5rem;
+    }
   }
 }

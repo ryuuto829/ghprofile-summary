@@ -5,18 +5,18 @@ import styles from './Repos.module.scss'
 export default function Repos() {
   return (
     <section>
-      <div className={sharedStyles.section}>
-        <h2 className={sharedStyles.section__header}>Top Repos</h2>
-        <ul className={styles['repo-list']}>
+      <div className={sharedStyles.wrapper}>
+        <h2 className={sharedStyles.header}>Top Repos</h2>
+        <ul className={styles.list}>
           {[...Array(10).keys()].map(i => (
             <li key={i}>
-              <a href='#' className={styles.repo}>
-                <div className={styles.repo__header}>
+              <a href='#' className={styles.item}>
+                <div className={styles.item__header}>
                   <RepoIcon size={24} />
-                  <h3>Portfolio</h3>
+                  <h3 className={styles.item__title}>Portfolio</h3>
                 </div>
-                <div className={styles.repo__footer}>
-                  <div className={styles.repo__stats}>
+                <div className={styles.item__footer}>
+                  <div className={styles.item__stats}>
                     <span>JavaScript</span>
                     <span>
                       <StarFillIcon size={16} />

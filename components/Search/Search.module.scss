@@ -1,3 +1,4 @@
+@import '../../styles/mixins';
 @import '../../styles/media';
 
 .header {
@@ -42,6 +43,12 @@
     background-repeat: no-repeat;
     background-size: 24px auto;
     background-position: 15px 45%;
+    @include transition;
+
+    &:hover,
+    &:focus {
+      outline: 1px solid var(--colorAccentLightGreen);
+    }
   }
 
   &__limit {

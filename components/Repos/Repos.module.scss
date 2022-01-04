@@ -1,15 +1,19 @@
 @import '../../styles/mixins';
 @import '../../styles/media';
 
-.repo-list {
+.list {
   width: 100%;
 
   & li {
     border-bottom: 1px solid var(--colorLightBlack);
+
+    & a {
+      @include link-hover;
+    }
   }
 }
 
-.repo {
+.item {
   @include flexColumn;
   padding: 1rem;
   border-radius: var(--borderRadius);
@@ -26,17 +30,19 @@
     @include media-for('tablet-portrait-up') {
       margin-bottom: 0;
     }
+  }
 
-    & h3 {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 18px;
-      font-weight: 500;
-      margin-left: 1rem;
-    }
+  &__title {
+    // Display long titles in 2 lines max
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 1rem;
   }
 
   &__footer {

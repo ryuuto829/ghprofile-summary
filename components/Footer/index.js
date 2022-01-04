@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div>
-        <div>
+        <div className={styles.footer__tools}>
           {'GHProfile summary is built with '}
           <a href="https://nextjs.org/">Next.js</a>
           {' and '}
