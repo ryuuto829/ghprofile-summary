@@ -7,7 +7,7 @@ export default function Head({ title, description }) {
 
   return (
     <NextHead>
-      <title>{title || DEFAULT_TITLE}</title>
+      <title>{`${title} | ${DEFAULT_TITLE}` || DEFAULT_TITLE}</title>
       <meta name="description" content={description || DEFAULT_DESCRIPTION} />
       <meta name="keywords" content="GitHub, nextjs, chart.js" />
 
