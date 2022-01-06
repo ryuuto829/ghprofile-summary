@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import Image from 'next/image'
 import { MarkGithubIcon } from '@primer/octicons-react'
 import sharedStyles  from '../../styles/Section.module.scss'
 import styles from './UserData.module.scss'
@@ -11,7 +12,10 @@ export default function UserData( { userAccountInfo }) {
     created_at,
     login,
     name,
-    html_url } = userAccountInfo
+    html_url,
+    avatar_url,
+  } = userAccountInfo
+
   const joinedGithubInYears = formatDifferenceInYears(created_at)
 
   const userProfileStats = {
@@ -33,10 +37,15 @@ export default function UserData( { userAccountInfo }) {
     <section>
       <div className={sharedStyles.wrapper}>
         <div className={styles.container}>
-          {/* TODO: Fetch an image from the API */}
+
           <div className={styles.avatar}>
-            <img src="https://via.placeholder.com/150" alt='User avatar' />
+            <Image
+              src={avatar_url}
+              alt={`${name}'s avatar`}
+              width={150}
+              height={150} />
           </div>
+
           <div className={styles.details}>
             <div className={styles.details__header}>
               <div className={styles.profile}>
@@ -51,6 +60,7 @@ export default function UserData( { userAccountInfo }) {
               </div>
             </div>
             <ul className={styles.stats}>
+
               {Object.keys(userProfileStats).map((item, i) => {
                 const { label, summary } = userProfileStats[item]
 
@@ -61,8 +71,10 @@ export default function UserData( { userAccountInfo }) {
                   </li>
                 )
               })}
+
             </ul>
           </div>
+
         </div>
       </div>
     </section>
@@ -77,5 +89,6 @@ UserData.propTypes = {
     login: PropTypes.string,
     name: PropTypes.string,
     html_url: PropTypes.string,
+    avatar_url: PropTypes.string,
   }),
 }

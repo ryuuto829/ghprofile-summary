@@ -19,6 +19,7 @@
   overflow: hidden;
   margin-bottom: 2rem;
   border-radius: var(--borderRadiusBig);
+  border: 1px solid var(--colorLightBlack);
 
   @include media-for('tablet-landscape-up') {
     margin-bottom: 0;

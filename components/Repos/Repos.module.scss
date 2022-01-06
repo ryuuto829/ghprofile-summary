@@ -74,6 +74,11 @@
     }
   }
 
+  &__size {
+    text-align: right;
+    min-width: 65px;
+  }
+
   @include media-for('tablet-portrait-up') {
     flex-direction: row;
     justify-content: space-between;
