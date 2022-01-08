@@ -3,9 +3,10 @@ import Image from 'next/image'
 import { MarkGithubIcon } from '@primer/octicons-react'
 import sharedStyles  from '../../styles/Section.module.scss'
 import styles from './UserData.module.scss'
+
 import { formatDifferenceInYears } from '../../utils'
 
-export default function UserData( { userAccountInfo }) {
+export default function UserData({ userAccountInfo }) {
   const {
     public_repos,
     location,
@@ -21,15 +22,15 @@ export default function UserData( { userAccountInfo }) {
   const userProfileStats = {
     repos: {
       label: 'Public Repositories',
-      summary: public_repos || '',
+      summary: public_repos || '0',
     },
     joined: {
       label: 'Joined GitHub',
-      summary: joinedGithubInYears || '',
+      summary: joinedGithubInYears || '-',
     },
     location: {
       label: 'Location',
-      summary: location || '',
+      summary: location || '-',
     },
   }
 
@@ -49,7 +50,8 @@ export default function UserData( { userAccountInfo }) {
           <div className={styles.details}>
             <div className={styles.details__header}>
               <div className={styles.profile}>
-                <h1 className={styles.profile__fullname}>{name}</h1>
+                {/* Users can be without a full name, only with login */}
+                <h1 className={styles.profile__fullname}>{name || login}</h1>
                 <h2 className={styles.profile__nickname}>{login}</h2>
               </div>
               <div className={styles.follow}>

@@ -12,7 +12,7 @@ const calculateYearDifference = startDate => {
     return null
   }
 
-  // date-fns library don't work with strings
+  // date-fns library doesn't work with strings
   // Read more: https://date-fns.org/v2.28.0/docs/differenceInYears
   const todaysDate = new Date().toISOString()
   const todaysDateISO = parseISO(todaysDate)

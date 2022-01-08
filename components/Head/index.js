@@ -1,13 +1,12 @@
 import NextHead from 'next/head'
 import PropTypes from 'prop-types'
 
-export default function Head({ title, description }) {
-  const DEFAULT_TITLE = 'GHProfile Summary'
-  const DEFAULT_DESCRIPTION = 'Find your GitHub profile and look it\'s summary with charts'
+import { DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../settings'
 
+export default function Head({ title, description }) {
   return (
     <NextHead>
-      <title>{`${title} | ${DEFAULT_TITLE}` || DEFAULT_TITLE}</title>
+      <title>{title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE}</title>
       <meta name="description" content={description || DEFAULT_DESCRIPTION} />
       <meta name="keywords" content="GitHub, nextjs, chart.js" />
 

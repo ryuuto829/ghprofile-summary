@@ -53,6 +53,7 @@
 
   &__limit {
     padding-top: 1rem;
+    white-space: nowrap;
 
     @include media-for('tablet-portrait-up') {
       padding-top: 0;
