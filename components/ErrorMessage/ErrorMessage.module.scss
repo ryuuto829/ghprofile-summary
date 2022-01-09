@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+
+  & svg {
+    color: rgb(255, 116, 116);
+  }
+}
+
+.text {
+  padding-left: 1rem;
+  color: var(--colorGrey);
+}

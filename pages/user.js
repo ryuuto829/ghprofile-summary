@@ -56,6 +56,7 @@ export default function User(props) {
       return
     }
 
+    setError(null)
     getUserData()
   }, [username])
 
@@ -65,6 +66,7 @@ export default function User(props) {
       return
     }
 
+    setError(null)
     getUserReposList()
   }, [userAccountInfo])
 
