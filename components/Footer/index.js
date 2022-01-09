@@ -7,9 +7,17 @@ export default function Footer() {
       <div>
         <div className={styles.footer__tools}>
           {'GHProfile summary is built with '}
-          <a href="https://nextjs.org/">Next.js</a>
+          <a
+            href="https://nextjs.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Next.js</a>
           {' and '}
-          <a href="https://www.chartjs.org/">chart.js</a>.
+          <a
+            href="https://www.chartjs.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >chart.js</a>.
         </div>
         <a
           href="https://github.com/ryuuto829/ghprofile-summary"

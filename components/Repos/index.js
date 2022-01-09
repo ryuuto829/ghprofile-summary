@@ -18,7 +18,6 @@ export default function Repos({ userReposList, username }) {
                 .slice(0, MAX_REPOS_ITEMS)
                 .map((item, i) => {
                   const {
-                    archived,
                     forks_count,
                     html_url,
                     language,
@@ -27,14 +26,14 @@ export default function Repos({ userReposList, username }) {
                     size,
                   } = item
 
-                  // Github API shows ALL public repos including archived
-                  if (archived) {
-                    return null
-                  }
-
                   return (
                     <li key={i}>
-                      <a href={html_url} className={styles.item}>
+                      <a
+                        href={html_url}
+                        className={styles.item}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <div className={styles.item__header}>
                           <RepoIcon size={24} />
                           <h3 className={styles.item__title}>{name}</h3>
@@ -75,7 +74,6 @@ export default function Repos({ userReposList, username }) {
 Repos.propTypes = {
   userReposList: PropTypes.arrayOf(
     PropTypes.shape({
-      archived: PropTypes.bool,
       forks_count: PropTypes.number,
       stargazers_count: PropTypes.number,
       html_url: PropTypes.string,

@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { MarkGithubIcon } from '@primer/octicons-react'
 import sharedStyles  from '../../styles/Section.module.scss'
 import styles from './Search.module.scss'
@@ -7,20 +9,26 @@ export default function Search({
   changeUserInputText,
   submitUsername,
   username,
+  rateLimit,
 }) {
-  // TODO: Fetch data from the limiter
-  const [requestLeft, requestLimit] = [49, 50]
+  const { pathname } = useRouter()
+  const { limit, remaining } = rateLimit || { limit: 60, remaining: 60 }
 
   return (
     <section>
       <div className={sharedStyles.container}>
 
-        <header className={styles.header}>
-          <span className={styles.header__icon}>
-            <MarkGithubIcon size="32" />
-          </span>
-          <h2 className={styles.header__title}>GHProfile Summary</h2>
-        </header>
+        <Link href="/">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a>
+            <header className={styles.header}>
+              <span className={styles.header__icon}>
+                <MarkGithubIcon size="32" />
+              </span>
+              <h2 className={styles.header__title}>GHProfile Summary</h2>
+            </header>
+          </a>
+        </Link>
 
         <form onSubmit={submitUsername}>
           <label htmlFor="userURL" className={styles.label}>
@@ -35,9 +43,12 @@ export default function Search({
               onChange={e => changeUserInputText(e)}
               value={username}
             />
-            <span className={styles.control__limit}>
-              {`${requestLeft} / ${requestLimit} REQUESTS LEFT`}
-            </span>
+            {pathname !== '/' ? (
+              <span className={styles.control__limit}>
+                {`${remaining} / ${limit} REQUESTS LEFT`}
+              </span>
+            ) : null}
+
           </div>
         </form>
 
@@ -50,4 +61,8 @@ Search.propTypes = {
   changeUserInputText: PropTypes.func,
   submitUsername: PropTypes.func,
   username: PropTypes.string,
+  rateLimit: PropTypes.shape({
+    limit: PropTypes.number,
+    remaining: PropTypes.number,
+  }),
 }

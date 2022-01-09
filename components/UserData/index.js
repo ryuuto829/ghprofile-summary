@@ -55,7 +55,12 @@ export default function UserData({ userAccountInfo }) {
                 <h2 className={styles.profile__nickname}>{login}</h2>
               </div>
               <div className={styles.follow}>
-                <a href={html_url} className={styles.follow__btn}>
+                <a
+                  href={html_url}
+                  className={styles.follow__btn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <MarkGithubIcon size='24' />
                   <span>Follow</span>
                 </a>

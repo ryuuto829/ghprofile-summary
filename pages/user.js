@@ -23,32 +23,54 @@ export default function User(props) {
   const [userAccountInfo, setUserAccountInfo] = useState(null)
   const [userReposList, setUserReposList] = useState(null)
   const [error, setError] = useState(null)
+  const [rateLimit, setRateLimit] = useState(null)
 
   const getUserData = async () => {
-    const response = await fetch(`https://api.github.com/users/${username}`)
+    try {
+      const response = await fetch(`https://api.github.com/users/${username}`)
 
-    if (response.status === 404) {
-      return setError(404)
+      if (response.status === 404) {
+        return setError(404)
+      }
+
+      const result = await response.json()
+      await setUserAccountInfo(result)
+    } catch (error) {
+      setError(400)
     }
-
-    const result = await response.json()
-
-    await setUserAccountInfo(result)
   }
 
   const getUserReposList = async () => {
-    const response = await fetch(
-      `https://api.github.com/users/${username}\
-      /repos?per_page=${MAX_REPOS_ITEMS}&sort=pushed`,
-    )
+    try {
+      const response = await fetch(
+        `https://api.github.com/users/${username}\
+        /repos?per_page=${MAX_REPOS_ITEMS}&sort=pushed`,
+      )
 
-    if (response.status === 404) {
-      return setError(404)
+      if (response.status === 404) {
+        return setError(404)
+      }
+
+      const result = await response.json()
+      await setUserReposList(result)
+    } catch (error) {
+      setError(400)
     }
+  }
 
-    const result = await response.json()
+  const getRateLimit = async () => {
+    try {
+      const response = await fetch('https://api.github.com/rate_limit')
+      const result = await response.json()
 
-    await setUserReposList(result)
+      if (result < 1 ) {
+        setError(403)
+      }
+
+      await setRateLimit(result.resources.core)
+    } catch (error) {
+      setError(400)
+    }
   }
 
   useEffect(() => {
@@ -57,6 +79,7 @@ export default function User(props) {
     }
 
     setError(null)
+    getRateLimit()
     getUserData()
   }, [username])
 
@@ -66,7 +89,6 @@ export default function User(props) {
       return
     }
 
-    setError(null)
     getUserReposList()
   }, [userAccountInfo])
 
@@ -78,6 +100,7 @@ export default function User(props) {
         changeUserInputText={changeUserInputText}
         submitUsername={submitUsername}
         username={usernameInputText}
+        rateLimit={rateLimit}
       />
 
       {error ? (
