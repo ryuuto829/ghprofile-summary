@@ -1,0 +1,15 @@
+@import '../../styles/mixins';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chart {
+  @include flexColumn;
+
+  &__graph {
+    width: 350px;
+  }
+}

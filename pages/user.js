@@ -6,6 +6,7 @@ import {
   Footer,
   Head,
   ErrorMessage,
+  Charts,
 } from '../components'
 import { useUserSearch } from '../hooks'
 
@@ -24,6 +25,7 @@ export default function User(props) {
   const [userReposList, setUserReposList] = useState(null)
   const [error, setError] = useState(null)
   const [rateLimit, setRateLimit] = useState(null)
+  const [reposCommits, setReposCommits] = useState([])
 
   const getUserData = async () => {
     try {
@@ -73,6 +75,26 @@ export default function User(props) {
     }
   }
 
+  const getReposCommits = async () => {
+    const reposNames = await userReposList
+      .slice(0, 3)
+      .map(repo => repo.name)
+
+    const commitsArray = await []
+
+    for (const name of reposNames) {
+      const response = await fetch(
+        `https://api.github.com/repos/${username}/${name}/contributors`,
+      )
+      const result = await response.json()
+      const commits = await result.reduce((a, b) => a + b.contributions, 0)
+
+      await commitsArray.push(commits)
+    }
+
+    await setReposCommits([reposNames, commitsArray])
+  }
+
   useEffect(() => {
     if (!username) {
       return
@@ -92,6 +114,15 @@ export default function User(props) {
     getUserReposList()
   }, [userAccountInfo])
 
+  useEffect(() => {
+    // Wait for the repos list results
+    if (!userReposList) {
+      return
+    }
+
+    getReposCommits()
+  }, [userReposList])
+
   return (
     <main>
       <Head title={error ? null : username} />
@@ -108,6 +139,9 @@ export default function User(props) {
       ) : (
         <>
           {userAccountInfo && <UserData userAccountInfo={userAccountInfo} /> }
+
+          {userReposList &&
+           <Charts userReposList={userReposList} reposCommits={reposCommits}/>}
 
           {userReposList && (
             <Repos

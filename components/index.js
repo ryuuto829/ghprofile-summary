@@ -4,5 +4,6 @@ import Repos from './Repos'
 import Footer from './Footer'
 import Head from './Head'
 import ErrorMessage from './ErrorMessage'
+import Charts from './Charts'
 
-export { UserData, Search, Repos, Footer, Head, ErrorMessage }
+export { UserData, Search, Repos, Footer, Head, ErrorMessage, Charts }
