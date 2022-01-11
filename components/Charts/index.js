@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
+
 import sharedStyles  from '../../styles/Section.module.scss'
 import styles from './Charts.module.scss'
+
 import { createChart, chartOptions } from '../../utils'
+import settings from '../settings'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -12,10 +15,10 @@ const ReposPerLanguageChart = ({ userReposList }) => {
     .map(repo => repo.language)
     .filter(lang => lang !== null)
   const uniquelangLabels = Array.from(new Set(langLabels))
-    .slice(0, 8)
+    .slice(0, settings.maxChartItems)
   const langCountData = uniquelangLabels
     .map(label => langLabels.filter(lang => lang === label).length)
-    .slice(0, 8)
+    .slice(0, settings.maxChartItems)
 
   const data = createChart(uniquelangLabels, langCountData)
 
@@ -32,10 +35,10 @@ const StarsPerRepoChart = ({ userReposList }) => {
     .sort((a, b) => b.stargazers_count - a.stargazers_count)
 
   const starredReposNames = sortedStarredRepos
-    .map(repo => repo.name).slice(0, 8)
+    .map(repo => repo.name).slice(0, settings.maxChartItems)
 
   const starredReposCount = sortedStarredRepos
-    .map(item => item.stargazers_count).slice(0, 8)
+    .map(item => item.stargazers_count).slice(0, settings.maxChartItems)
 
   const data = createChart(starredReposNames, starredReposCount)
 
@@ -45,7 +48,15 @@ const StarsPerRepoChart = ({ userReposList }) => {
 }
 
 const CommitsPerRepoChart = ({ reposCommits }) => {
-  const data = createChart(reposCommits[0], reposCommits[1])
+  const labels = []
+  const values = []
+
+  for (const prop of reposCommits) {
+    labels.push(prop[0])
+    values.push(prop[1])
+  }
+
+  const data = createChart(labels, values)
 
   return (
     <Doughnut data={data} options={chartOptions} />
@@ -60,7 +71,9 @@ export default function Charts({ userReposList, reposCommits }) {
 
           {/* Chart 1. Repos per Language */}
           <div className={styles.chart}>
-            <h2>Repos per Language</h2>
+            <header className={styles.chart__header}>
+              <h2 className={styles.chart__title}>Repos per Language</h2>
+            </header>
             <div className={styles.chart__graph}>
               <ReposPerLanguageChart userReposList={userReposList} />
             </div>
@@ -68,7 +81,10 @@ export default function Charts({ userReposList, reposCommits }) {
 
           {/* Chart 2. Stars per Repo (top 10) */}
           <div className={styles.chart}>
-            <h2>Stars per Repo (top 10)</h2>
+            <header className={styles.chart__header}>
+              <h2 className={styles.chart__title}>Stars per Repo</h2>
+              <span className={styles.chart__badge}>Top 10</span>
+            </header>
             <div className={styles.chart__graph}>
               <StarsPerRepoChart userReposList={userReposList} />
             </div>
@@ -76,7 +92,11 @@ export default function Charts({ userReposList, reposCommits }) {
 
           {/* Chart 3. Commits per Repo (recent 10) */}
           <div className={styles.chart}>
-            <h2>Commits per Repo (recent 10)</h2>
+            <header className={styles.chart__header}>
+              <h2 className={styles.chart__title}>Commits per Repo</h2>
+              <span className={styles.chart__badge}>Latest 10</span>
+            </header>
+
             <div className={styles.chart__graph}>
               <CommitsPerRepoChart reposCommits={reposCommits} />
             </div>

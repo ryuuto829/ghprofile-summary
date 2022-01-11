@@ -1,15 +1,50 @@
 @import '../../styles/mixins';
+@import '../../styles/media';
 
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .chart {
   @include flexColumn;
+  padding: 0;
+
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    font-weight: 500;
+  }
+
+  &__badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--colorLightBlack);
+    border-radius: 2rem;
+    margin-left: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
 
   &__graph {
-    width: 350px;
+    width: 256px;
+
+    @include media-for('tablet-landscape-up') {
+      width: 300px;
+    }
+  }
+
+  @include media-for('tablet-landscape-up') {
+    padding: 0 2rem;
+  }
+
+  @include media-for('tablet-portrait-up') {
+    padding: 0 1rem;
   }
 }

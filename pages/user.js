@@ -10,7 +10,7 @@ import {
 } from '../components'
 import { useUserSearch } from '../hooks'
 
-import { MAX_REPOS_ITEMS } from '../components/settings'
+import settings from '../components/settings'
 
 export default function User(props) {
   const username = props.query.id
@@ -46,7 +46,7 @@ export default function User(props) {
     try {
       const response = await fetch(
         `https://api.github.com/users/${username}\
-        /repos?per_page=${MAX_REPOS_ITEMS}&sort=pushed`,
+        /repos?per_page=${settings.maxReposItems}&sort=pushed`,
       )
 
       if (response.status === 404) {
@@ -54,6 +54,7 @@ export default function User(props) {
       }
 
       const result = await response.json()
+
       await setUserReposList(result)
     } catch (error) {
       setError(400)
@@ -76,23 +77,33 @@ export default function User(props) {
   }
 
   const getReposCommits = async () => {
-    const reposNames = await userReposList
-      .slice(0, 3)
-      .map(repo => repo.name)
+    try {
+      const reposNames = await userReposList
+        .slice(0, settings.maxLatestRepos)
+        .map(repo => repo.name)
 
-    const commitsArray = await []
+      const commitsData = {}
 
-    for (const name of reposNames) {
-      const response = await fetch(
-        `https://api.github.com/repos/${username}/${name}/contributors`,
-      )
-      const result = await response.json()
-      const commits = await result.reduce((a, b) => a + b.contributions, 0)
+      for (const name of reposNames) {
+        const response = await fetch(
+          `https://api.github.com/repos/${username}/${name}/contributors`,
+        )
+        const result = await response.json()
 
-      await commitsArray.push(commits)
+        const commitsSumCount = result
+          .reduce((a, b) => a + b.contributions, 0)
+
+        commitsData[name] = commitsSumCount
+      }
+
+      const commitsDataArray = Object.entries(commitsData)
+      const sortedCommitsDataArray = commitsDataArray
+        .sort((a, b) => b[1] - a[1])
+
+      await setReposCommits(sortedCommitsDataArray)
+    } catch (error) {
+      setError(400)
     }
-
-    await setReposCommits([reposNames, commitsArray])
   }
 
   useEffect(() => {
@@ -100,7 +111,10 @@ export default function User(props) {
       return
     }
 
+    setUserReposList(null)
+    setReposCommits([])
     setError(null)
+
     getRateLimit()
     getUserData()
   }, [username])
@@ -140,8 +154,9 @@ export default function User(props) {
         <>
           {userAccountInfo && <UserData userAccountInfo={userAccountInfo} /> }
 
-          {userReposList &&
-           <Charts userReposList={userReposList} reposCommits={reposCommits}/>}
+          {userReposList && userReposList.length !== 0 && reposCommits && (
+            <Charts userReposList={userReposList} reposCommits={reposCommits}/>
+          )}
 
           {userReposList && (
             <Repos
