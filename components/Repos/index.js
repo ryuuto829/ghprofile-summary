@@ -2,8 +2,7 @@ import PropTypes from 'prop-types'
 import { RepoIcon, StarFillIcon, RepoForkedIcon } from '@primer/octicons-react'
 import sharedStyles  from '../../styles/Section.module.scss'
 import styles from './Repos.module.scss'
-
-import { MAX_REPOS_ITEMS } from '../settings'
+import settings from '../settings'
 
 export default function Repos({ userReposList, username }) {
   return (
@@ -15,7 +14,7 @@ export default function Repos({ userReposList, username }) {
           (
             <ul className={styles.list}>
               {userReposList
-                .slice(0, MAX_REPOS_ITEMS)
+                .slice(0, settings.maxLatestRepos)
                 .map((item, i) => {
                   const {
                     forks_count,

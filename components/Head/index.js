@@ -1,31 +1,35 @@
 import NextHead from 'next/head'
 import PropTypes from 'prop-types'
-
-import { DEFAULT_TITLE, DEFAULT_DESCRIPTION } from '../settings'
+import settings from '../settings'
 
 export default function Head({ title, description }) {
   return (
     <NextHead>
-      <title>{title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE}</title>
-      <meta name="description" content={description || DEFAULT_DESCRIPTION} />
+      <title>
+        {title ? `${title} | ${settings.defaultTitle}` : settings.defaultTitle}
+      </title>
+      <meta
+        name="description"
+        content={description || settings.defaultDescription}
+      />
       <meta name="keywords" content="GitHub, nextjs, chart.js" />
 
       <meta name="theme-color" content="#031218" />
 
-      <meta property="og:title" content={title || DEFAULT_TITLE} />
+      <meta property="og:title" content={title || settings.defaultTitle} />
       <meta
         property="og:description"
-        content={description || DEFAULT_DESCRIPTION} />
+        content={description || settings.defaultDescription} />
       {/* TODO: Add image and url */}
       <meta property="og:image" content="" />
       <meta property="og:image:width" content="" />
       <meta property="og:image:height" content="" />
       <meta property="og:url" content="" />
 
-      <meta name="twitter:title" content={title || DEFAULT_TITLE} />
+      <meta name="twitter:title" content={title || settings.defaultTitle} />
       <meta
         name="twitter:description"
-        content={description || DEFAULT_DESCRIPTION} />
+        content={description || settings.defaultDescription} />
       <meta name="twitter:creator" content={'@ryuuto829'} />
       <meta name="twitter:card" content="summary_large_image" />
       {/* TODO: Add image and url */}
