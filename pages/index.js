@@ -2,7 +2,7 @@ import { Search, Footer, Head } from '../components'
 import styles from '../styles/User.module.scss'
 import { useUserSearch } from '../hooks'
 
-export default function Home() {
+const Home = () => {
   const {
     submitUsername,
     changeUserInputText,
@@ -25,3 +25,5 @@ export default function Home() {
     </main>
   )
 }
+
+export default Home

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import {
   UserData,
@@ -9,11 +10,11 @@ import {
   Charts,
   Loading,
 } from '../components'
-import { useUserSearch } from '../hooks'
 
+import { useUserSearch } from '../hooks'
 import settings from '../components/settings'
 
-export default function User(props) {
+const User = props => {
   const username = props.query.id
 
   const {
@@ -38,7 +39,7 @@ export default function User(props) {
       }
 
       const result = await response.json()
-      await setUserAccountInfo(result)
+      setUserAccountInfo(result)
     } catch (error) {
       setError(400)
     }
@@ -56,8 +57,7 @@ export default function User(props) {
       }
 
       const result = await response.json()
-
-      await setUserReposList(result)
+      setUserReposList(result)
     } catch (error) {
       setError(400)
     }
@@ -72,7 +72,7 @@ export default function User(props) {
         setError(403)
       }
 
-      await setRateLimit(result.resources.core)
+      setRateLimit(result.resources.core)
     } catch (error) {
       setError(400)
     }
@@ -80,7 +80,7 @@ export default function User(props) {
 
   const getReposCommits = async () => {
     try {
-      const reposNames = await userReposList
+      const reposNames = userReposList
         .slice(0, settings.maxLatestRepos)
         .map(repo => repo.name)
 
@@ -91,7 +91,6 @@ export default function User(props) {
           `https://api.github.com/repos/${username}/${name}/contributors`,
         )
         const result = await response.json()
-
         const commitsSumCount = result
           .reduce((a, b) => a + b.contributions, 0)
 
@@ -102,8 +101,8 @@ export default function User(props) {
       const sortedCommitsDataArray = commitsDataArray
         .sort((a, b) => b[1] - a[1])
 
-      await setReposCommits(sortedCommitsDataArray)
-      await setLoading(false)
+      setReposCommits(sortedCommitsDataArray)
+      setLoading(false)
     } catch (error) {
       setLoading(false)
       setError(400)
@@ -118,13 +117,14 @@ export default function User(props) {
     setUserReposList(null)
     setReposCommits([])
     setError(null)
+    setLoading(false)
 
     getRateLimit()
     getUserData()
   }, [username])
 
   useEffect(() => {
-    // Avoid fetching excess information before username is checked
+    // Avoid fetching excess of information before username is checked
     if (!userAccountInfo) {
       return
     }
@@ -157,13 +157,12 @@ export default function User(props) {
         <ErrorMessage error={error} />
       ) : (
         <>
-
           {/* User profile summary section */}
           {userAccountInfo ? (
             <UserData userAccountInfo={userAccountInfo} />
           ) : (
             <Loading message="User profile info is loading" />
-          )  }
+          )}
 
           {/* User graphical summary section */}
           {userReposList
@@ -188,7 +187,11 @@ export default function User(props) {
               username={username}
             />
           ) : (
-            <Loading message="User repos list is loading" />
+            <>
+              {userAccountInfo && (
+                <Loading message="User repos list is loading" />
+              )}
+            </>
           )}
         </>
       )}
@@ -196,4 +199,10 @@ export default function User(props) {
       <Footer />
     </main>
   )
+}
+
+export default User
+
+User.propTypes = {
+  query: PropTypes.object,
 }

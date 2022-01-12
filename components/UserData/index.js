@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import Image from 'next/image'
 import { MarkGithubIcon } from '@primer/octicons-react'
+
 import sharedStyles  from '../../styles/Section.module.scss'
 import styles from './UserData.module.scss'
-
 import { formatDifferenceInYears } from '../../utils'
 
-export default function UserData({ userAccountInfo }) {
+const UserData = ({ userAccountInfo }) => {
   const {
     public_repos,
     location,
@@ -50,7 +50,7 @@ export default function UserData({ userAccountInfo }) {
           <div className={styles.details}>
             <div className={styles.details__header}>
               <div className={styles.profile}>
-                {/* Users can be without a full name, only with login */}
+                {/* Users can have no full name, only nickname (login) */}
                 <h1 className={styles.profile__fullname}>{name || login}</h1>
                 <h2 className={styles.profile__nickname}>{login}</h2>
               </div>
@@ -67,7 +67,6 @@ export default function UserData({ userAccountInfo }) {
               </div>
             </div>
             <ul className={styles.stats}>
-
               {Object.keys(userProfileStats).map((item, i) => {
                 const { label, summary } = userProfileStats[item]
 
@@ -78,7 +77,6 @@ export default function UserData({ userAccountInfo }) {
                   </li>
                 )
               })}
-
             </ul>
           </div>
 
@@ -87,6 +85,8 @@ export default function UserData({ userAccountInfo }) {
     </section>
   )
 }
+
+export default UserData
 
 UserData.propTypes = {
   userAccountInfo: PropTypes.shape({

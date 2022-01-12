@@ -46,9 +46,7 @@
   }
 
   &__footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flexSpaceBetween;
     font-size: 13px;
     color: var(--colorGrey);
   }

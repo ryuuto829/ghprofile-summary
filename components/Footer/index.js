@@ -1,31 +1,37 @@
 import { MarkGithubIcon } from '@primer/octicons-react'
 import styles from './Footer.module.scss'
+import settings from '../settings'
 
-export default function Footer() {
-  return (
-    <footer className={styles.footer}>
-      <div>
-        <div className={styles.footer__tools}>
-          {'GHProfile summary is built with '}
-          <a
-            href="https://nextjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Next.js</a>
-          {' and '}
-          <a
-            href="https://www.chartjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >chart.js</a>.
-        </div>
+const Footer = () => (
+  <footer className={styles.container}>
+    <div>
+      <div className={styles.tools}>
+        {'GHProfile summary is built with '}
         <a
-          href="https://github.com/ryuuto829/ghprofile-summary"
-          className={styles['footer__repo-source']}>
-          <MarkGithubIcon size={16} />
-          <span>Source on GitHub</span>
+          href="https://nextjs.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Next.js
         </a>
+        {' and '}
+        <a
+          href="https://www.chartjs.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Chart.js
+        </a>
+        {'.'}
       </div>
-    </footer>
-  )
-}
+      <a
+        href={settings.appGithubRepo}
+        className={styles.source}>
+        <MarkGithubIcon size={16} />
+        <span>Source on GitHub</span>
+      </a>
+    </div>
+  </footer>
+)
+
+export default Footer

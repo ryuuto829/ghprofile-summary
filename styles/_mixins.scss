@@ -9,6 +9,12 @@
   flex-direction: column;
 }
 
+@mixin flexSpaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @mixin transition {
   transition: all 0.2s cubic-bezier(0.15, 0.96, 0.26, 1.05) 0s;
 }

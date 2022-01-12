@@ -12,6 +12,12 @@ export const chartOptions = {
   },
 }
 
+/**
+ * Build Chart.js "data" property
+ *
+ * @param {Array} labels - labels for dataset
+ * @param {Array} data - dataset
+ */
 export const createChart = (labels, data) => ({
   labels: labels,
   datasets: [

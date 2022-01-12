@@ -1,20 +1,12 @@
 @import '../../styles/mixins';
 
-.footer {
+.container {
   @include flexCenter;
   width: 100%;
   padding: 1rem;
   text-align: center;
   color: var(--colorGrey);
   font-size: 14px;
-
-  &__tools {
-    margin-bottom: 0.5rem;
-  }
-
-  &__repo-source {
-    @include flexCenter;
-  }
 
   & a {
     color: var(--colorAccentGreen);
@@ -24,4 +16,12 @@
       margin-right: 0.5rem;
     }
   }
+}
+
+.tools {
+  margin-bottom: 0.5rem;
+}
+
+.source {
+  @include flexCenter;
 }
