@@ -7,6 +7,7 @@ import {
   Head,
   ErrorMessage,
   Charts,
+  Loading,
 } from '../components'
 import { useUserSearch } from '../hooks'
 
@@ -26,6 +27,7 @@ export default function User(props) {
   const [error, setError] = useState(null)
   const [rateLimit, setRateLimit] = useState(null)
   const [reposCommits, setReposCommits] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const getUserData = async () => {
     try {
@@ -101,7 +103,9 @@ export default function User(props) {
         .sort((a, b) => b[1] - a[1])
 
       await setReposCommits(sortedCommitsDataArray)
+      await setLoading(false)
     } catch (error) {
+      setLoading(false)
       setError(400)
     }
   }
@@ -134,6 +138,7 @@ export default function User(props) {
       return
     }
 
+    setLoading(true)
     getReposCommits()
   }, [userReposList])
 
@@ -152,17 +157,38 @@ export default function User(props) {
         <ErrorMessage error={error} />
       ) : (
         <>
-          {userAccountInfo && <UserData userAccountInfo={userAccountInfo} /> }
 
-          {userReposList && userReposList.length !== 0 && reposCommits && (
-            <Charts userReposList={userReposList} reposCommits={reposCommits}/>
-          )}
+          {/* User profile summary section */}
+          {userAccountInfo ? (
+            <UserData userAccountInfo={userAccountInfo} />
+          ) : (
+            <Loading message="User profile info is loading" />
+          )  }
 
-          {userReposList && (
+          {/* User graphical summary section */}
+          {userReposList
+          && userReposList.length !== 0
+          && reposCommits.length !== 0 ? (
+              <Charts
+                userReposList={userReposList}
+                reposCommits={reposCommits}
+              />
+            ) : (
+              <>
+                {loading && (
+                  <Loading message="User graphical summary is loading" />
+                )}
+              </>
+            )}
+
+          {/* User repos list summary */}
+          {userReposList ? (
             <Repos
               userReposList={userReposList}
               username={username}
             />
+          ) : (
+            <Loading message="User repos list is loading" />
           )}
         </>
       )}
