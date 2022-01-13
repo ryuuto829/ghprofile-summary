@@ -7,8 +7,8 @@ const settings = {
   twitter: '@ryuuto829',
 
   // Open Graph image
-  ogURL: 'https://ghprofile.ryuuto829.now.sh',
-  ogImage: 'https://ghprofile.ryuuto829.now.sh/public/og.png',
+  ogURL: 'ghprofile-summary.vercel.app',
+  ogImage: 'ghprofile-summary.vercel.app/og.png',
   ogWidth: '1646',
   ogHeight: '926',
 

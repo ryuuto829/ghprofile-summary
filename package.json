@@ -1,5 +1,9 @@
 {
   "name": "ghprofile-summary",
+  "version": "1.0.0",
+  "description": "Find your GitHub profile and look it's summary with charts",
+  "keywords": ["nextjs", "github-api", "chartjs"],
+  "author": "ryuuto829",
   "private": true,
   "scripts": {
     "dev": "next dev",
