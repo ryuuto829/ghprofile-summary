@@ -8,7 +8,7 @@ const settings = {
 
   // Open Graph image
   ogURL: 'ghprofile-summary.vercel.app',
-  ogImage: 'ghprofile-summary.vercel.app/og.png',
+  ogImage: 'ghprofile-summary.vercel.app/og.jpg',
   ogWidth: '1646',
   ogHeight: '926',
 

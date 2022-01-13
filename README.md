@@ -8,7 +8,7 @@ Find your GitHub profile and look it's summary with charts.
 
 </div>
 
-![og](https://raw.githubusercontent.com/ryuuto829/ghprofile-summary/master/public/og.png)
+![og](https://raw.githubusercontent.com/ryuuto829/ghprofile-summary/master/public/og.jpg)
 
 Built with:
 
