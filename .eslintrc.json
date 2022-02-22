@@ -4,6 +4,7 @@
     "next/core-web-vitals"
   ],
   "rules": {
+    "comma-dangle": ["error", "always-multiline"],
     "semi": ["error", "never"],
     "max-len": ["error", { "code": 80 }]
   }

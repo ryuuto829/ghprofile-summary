@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 
-import sharedStyles  from '../../styles/Section.module.scss'
+import sharedStyles from '../../styles/Section.module.scss'
 import styles from './Charts.module.scss'
 import { createChart, chartOptions } from '../../utils'
 import settings from '../settings'
@@ -33,28 +33,34 @@ const ReposPerLanguageChart = ({ userReposList }) => {
   const langLabels = userReposList
     .map(repo => repo.language)
     .filter(lang => lang !== null)
-  const uniquelangLabels = Array.from(new Set(langLabels))
+  const uniquelangLabels = Array.from(new Set(langLabels)).slice(
+    0,
+    settings.maxChartItems,
+  )
+  const sortedReposData = uniquelangLabels
+    .map(label => [label, langLabels.filter(lang => lang === label).length])
     .slice(0, settings.maxChartItems)
-  const langCountData = uniquelangLabels
-    .map(label => langLabels.filter(lang => lang === label).length)
-    .slice(0, settings.maxChartItems)
+    .sort((a, b) => b[1] - a[1])
 
-  const data = createChart(uniquelangLabels, langCountData)
+  const sortedLangLabels = sortedReposData.map(lang => lang[0])
+  const langCountData = sortedReposData.map(lang => lang[1])
+
+  const data = createChart(sortedLangLabels, langCountData)
 
   return (
     <Graph
       data={data}
       chartOptions={chartOptions}
-      chartTitle='Repos per Language'
+      chartTitle="Repos per Language"
     />
   )
 }
 
 const StarsPerRepoChart = ({ userReposList }) => {
-  const starredRepos = userReposList
-    .filter(repo => repo.stargazers_count > 0)
-  const sortedStarredRepos = starredRepos
-    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+  const starredRepos = userReposList.filter(repo => repo.stargazers_count > 0)
+  const sortedStarredRepos = starredRepos.sort(
+    (a, b) => b.stargazers_count - a.stargazers_count,
+  )
   const starredReposNames = sortedStarredRepos
     .map(repo => repo.name)
     .slice(0, settings.maxChartItems)
@@ -68,8 +74,8 @@ const StarsPerRepoChart = ({ userReposList }) => {
     <Graph
       data={data}
       chartOptions={chartOptions}
-      chartTitle='Stars per Repo'
-      badgeText='Top 10'
+      chartTitle="Stars per Repo"
+      badgeText="Top 10"
     />
   )
 }
@@ -89,8 +95,8 @@ const CommitsPerRepoChart = ({ reposCommits }) => {
     <Graph
       data={data}
       chartOptions={chartOptions}
-      chartTitle='Commits per Repo'
-      badgeText='Latest 10'
+      chartTitle="Commits per Repo"
+      badgeText="Latest 10"
     />
   )
 }
@@ -99,7 +105,6 @@ const Charts = ({ userReposList, reposCommits }) => (
   <section>
     <div className={sharedStyles.wrapper}>
       <div className={styles.container}>
-
         {/* Chart 1. Repos per Language */}
         <ReposPerLanguageChart userReposList={userReposList} />
 
@@ -108,7 +113,6 @@ const Charts = ({ userReposList, reposCommits }) => (
 
         {/* Chart 3. Commits per Repo (Latest 10) */}
         <CommitsPerRepoChart reposCommits={reposCommits} />
-
       </div>
     </div>
   </section>
