@@ -5,10 +5,12 @@ import styles from './Loading.module.scss'
 const Loading = ({ message }) => (
   <section className={sharedStyles.full}>
     <div className={styles.container}>
-
       {/* CSS loading animations taken from https://loading.io/css/ */}
       <div className={styles['ring-spinner']}>
-        <div></div><div></div><div></div><div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
 
       <span className={styles.message}>{message || 'Data is loading'}</span>

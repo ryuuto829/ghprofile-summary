@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import Image from 'next/image'
 import { MarkGithubIcon } from '@primer/octicons-react'
 
-import sharedStyles  from '../../styles/Section.module.scss'
+import sharedStyles from '../../styles/Section.module.scss'
 import styles from './UserData.module.scss'
 import { formatDifferenceInYears } from '../../utils'
 
@@ -38,13 +38,13 @@ const UserData = ({ userAccountInfo }) => {
     <section>
       <div className={sharedStyles.wrapper}>
         <div className={styles.container}>
-
           <div className={styles.avatar}>
             <Image
               src={avatar_url}
               alt={`${name}'s avatar`}
               width={150}
-              height={150} />
+              height={150}
+            />
           </div>
 
           <div className={styles.details}>
@@ -59,9 +59,8 @@ const UserData = ({ userAccountInfo }) => {
                   href={html_url}
                   className={styles.follow__btn}
                   target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MarkGithubIcon size='24' />
+                  rel="noopener noreferrer">
+                  <MarkGithubIcon size="24" />
                   <span>Follow</span>
                 </a>
               </div>
@@ -79,7 +78,6 @@ const UserData = ({ userAccountInfo }) => {
               })}
             </ul>
           </div>
-
         </div>
       </div>
     </section>

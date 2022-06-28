@@ -51,7 +51,7 @@ const Head = ({ title, description }) => (
     <meta name="twitter:creator" content={settings.twitter} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={settings.ogImage} />
-    <meta name="twitter:site" content={settings.ogURL}/>
+    <meta name="twitter:site" content={settings.ogURL} />
   </NextHead>
 )
 

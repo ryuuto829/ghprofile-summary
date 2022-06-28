@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
+
 import {
   UserData,
   Search,
@@ -10,18 +11,14 @@ import {
   Charts,
   Loading,
 } from '../components'
-
 import { useUserSearch } from '../hooks'
 import settings from '../components/settings'
 
 const User = props => {
   const username = props.query.id
 
-  const {
-    submitUsername,
-    changeUserInputText,
-    usernameInputText,
-  } = useUserSearch()
+  const { submitUsername, changeUserInputText, usernameInputText } =
+    useUserSearch()
 
   const [userAccountInfo, setUserAccountInfo] = useState(null)
   const [userReposList, setUserReposList] = useState(null)
@@ -68,7 +65,7 @@ const User = props => {
       const response = await fetch('https://api.github.com/rate_limit')
       const result = await response.json()
 
-      if (result < 1 ) {
+      if (result < 1) {
         setError(403)
       }
 
@@ -91,15 +88,15 @@ const User = props => {
           `https://api.github.com/repos/${username}/${name}/contributors`,
         )
         const result = await response.json()
-        const commitsSumCount = result
-          .reduce((a, b) => a + b.contributions, 0)
+        const commitsSumCount = result.reduce((a, b) => a + b.contributions, 0)
 
         commitsData[name] = commitsSumCount
       }
 
       const commitsDataArray = Object.entries(commitsData)
-      const sortedCommitsDataArray = commitsDataArray
-        .sort((a, b) => b[1] - a[1])
+      const sortedCommitsDataArray = commitsDataArray.sort(
+        (a, b) => b[1] - a[1],
+      )
 
       setReposCommits(sortedCommitsDataArray)
       setLoading(false)
@@ -165,27 +162,21 @@ const User = props => {
           )}
 
           {/* User graphical summary section */}
-          {userReposList
-          && userReposList.length !== 0
-          && reposCommits.length !== 0 ? (
-              <Charts
-                userReposList={userReposList}
-                reposCommits={reposCommits}
-              />
-            ) : (
-              <>
-                {loading && (
-                  <Loading message="User graphical summary is loading" />
-                )}
-              </>
-            )}
+          {userReposList &&
+          userReposList.length !== 0 &&
+          reposCommits.length !== 0 ? (
+            <Charts userReposList={userReposList} reposCommits={reposCommits} />
+          ) : (
+            <>
+              {loading && (
+                <Loading message="User graphical summary is loading" />
+              )}
+            </>
+          )}
 
           {/* User repos list summary */}
           {userReposList ? (
-            <Repos
-              userReposList={userReposList}
-              username={username}
-            />
+            <Repos userReposList={userReposList} username={username} />
           ) : (
             <>
               {userAccountInfo && (

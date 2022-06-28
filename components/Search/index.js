@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { MarkGithubIcon } from '@primer/octicons-react'
 
-import sharedStyles  from '../../styles/Section.module.scss'
+import sharedStyles from '../../styles/Section.module.scss'
 import styles from './Search.module.scss'
 import settings from '../settings'
 
@@ -19,7 +19,6 @@ const Search = ({
   return (
     <section>
       <div className={sharedStyles.container}>
-
         <Link href="/">
           {/* Next JS will send href property to its child */}
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -53,7 +52,6 @@ const Search = ({
             )}
           </div>
         </form>
-
       </div>
     </section>
   )

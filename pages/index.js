@@ -3,11 +3,8 @@ import styles from '../styles/User.module.scss'
 import { useUserSearch } from '../hooks'
 
 const Home = () => {
-  const {
-    submitUsername,
-    changeUserInputText,
-    usernameInputText,
-  } = useUserSearch()
+  const { submitUsername, changeUserInputText, usernameInputText } =
+    useUserSearch()
 
   return (
     <main>

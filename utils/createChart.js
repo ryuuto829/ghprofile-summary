@@ -36,9 +36,7 @@ export const createChart = (labels, data) => ({
         '#ef8250cc',
         '#e4604ecc',
       ],
-      borderColor: [
-        '#0e1e25',
-      ],
+      borderColor: ['#0e1e25'],
       borderWidth: 2,
     },
   ],

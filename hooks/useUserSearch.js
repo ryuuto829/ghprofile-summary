@@ -31,8 +31,7 @@ export const AppWrapper = ({ children }) => {
         usernameInputText,
         changeUserInputText,
         submitUsername,
-      }}
-    >
+      }}>
       {children}
     </UserSearchContext.Provider>
   )

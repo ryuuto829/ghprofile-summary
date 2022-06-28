@@ -50,8 +50,7 @@ const parseDateText = numberOfYears => {
 /**
  * Format the difference in from now and startDate in human-readable text
  */
-const formatDifferenceInYears = startDate => (
+const formatDifferenceInYears = startDate =>
   parseDateText(calculateYearDifference(startDate))
-)
 
 export default formatDifferenceInYears
