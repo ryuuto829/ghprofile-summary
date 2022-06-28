@@ -118,6 +118,7 @@ const User = props => {
 
     getRateLimit()
     getUserData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
 
   useEffect(() => {
@@ -127,6 +128,7 @@ const User = props => {
     }
 
     getUserReposList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userAccountInfo])
 
   useEffect(() => {
@@ -137,6 +139,7 @@ const User = props => {
 
     setLoading(true)
     getReposCommits()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userReposList])
 
   return (
