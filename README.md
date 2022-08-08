@@ -2,19 +2,13 @@
 
 # GHProfile Summary
 
-A summary of the GitHub profile with charts built with Next.js and the GitHub API.
+A summary of the GitHub profile with charts built using Next.js and the GitHub API.
 
 **https://ghprofile-summary.vercel.app/**
 
 ![demo](https://raw.githubusercontent.com/ryuuto829/ghprofile-summary/master/_assets/ghprofile-summary-demo.gif)
 
 </div>
-
-## Table of contents
-
-- [Features](#features)
-- [Built with](#built-with)
-- [Getting Started](#getting-started)
 
 ## Features
 
